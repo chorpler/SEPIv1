@@ -1,0 +1,66 @@
+<ion-modal-view>
+	<ion-header-bar>
+		<h1 class="title">{{expenses.editviewOpen ? "edit_title" : "new_title" | translate}} {{"expenses_new_expense" | translate}}</h1>
+		<div class="buttons">
+			<button class="button button-clear button-positive" ng-click="expenses.showConfirm()" ng-show="expenses.editviewOpen">
+				<i class="icon ion-trash-b"></i>
+			</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="expensesEdit">
+		<div class="list">
+			<form name="expenseForm" novalidate>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">{{"expense_name" | translate}}</span>
+					<input name="name" type="text" placeholder="{{'expense_name' | translate}}*" ng-model="expenses.activeExpense.name" required="required">
+					<div ng-show="(expenseForm.name.$touched || expenseForm.$submitted) && !expenses.submitted">
+						<span ng-show="expenseForm.name.$error.required" class="form-error">
+							{{"required_error" | translate}}
+						</span>
+					</div>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">{{"expense_amount" | translate}}</span>
+					<input type="number" smart-float name="amount" ng-pattern="numberPattern" step="0.01" placeholder="{{'expense_amount' | translate}}*" ng-model="expenses.activeExpense.amount" required="required" />
+					<div ng-show="(expenseForm.name.$touched || expenseForm.$submitted) && !expenses.submitted">
+						<span ng-show="expenseForm.amount.$error.pattern" class="form-error">
+							{{"invalid_number_error" | translate}}
+						</span>
+						<span ng-show="expenseForm.amount.$error.required" class="form-error">
+							{{"required_error" | translate}}
+						</span>
+					</div>
+				</label>
+				<label class="item item-stacked-label">
+					<span class="input-label expense_type">{{"expense_type" | translate}}*</span>
+					<div class="row types">
+						<div class="col">
+							<ion-radio ng-model="expenses.activeExpense.expType" ng-click="expenses.isCheckboxChecked()" ng-value="'fixed'">{{"expense_fixed" | translate}}</ion-radio>
+						</div>
+						<div class="col">
+							<ion-radio ng-model="expenses.activeExpense.expType" ng-click="expenses.isCheckboxChecked()" ng-value="'variable'">{{"expense_variable" | translate}}</ion-radio>
+						</div>
+					</div>
+					<div ng-show="expenseForm.$submitted && !expenses.submitted">
+						<span ng-show="!expenses.activeExpense.expType" class="form-error">
+							{{"required_error" | translate}}
+						</span>
+					</div>
+				</label>
+				<label class="item item-input item-floating-label">
+					<span class="input-label">{{"inventory_total_comments" | translate}}</span>
+					<textarea placeholder="{{'inventory_total_comments' | translate}}" ng-model="expenses.activeExpense.comments"></textarea>
+				</label>
+				<label class="item item-input">
+					<span class="input-label">{{"inv_exp_sal_date" | translate}}<span ng-show="!expenses.editviewOpen">*</span></span>
+					<input id="expensesDateInput" class="expensesDateInput" placeholder="{{'inv_exp_sal_date' | translate}}" type="date" ng-model="expenses.activeExpense.date" required="required">
+				</label>
+				<input type="submit" class="button button-block button-balanced" ng-click="expenses.save(expenses.activeExpense, expenseForm, $event)" value="{{'save_button' | translate}}">
+				</input>
+				<button class="button button-block button-assertive" ng-click="expenses.cancel(expenses.activeExpense)">
+					{{"cancel_button" | translate}}
+				</button>
+			</form>
+		</div>
+	</ion-content>
+</ion-modal-view>

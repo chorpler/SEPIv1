@@ -1,0 +1,24 @@
+<ion-view view-title="{{'menu_reports' | translate}}">
+	<ion-content class="reports">
+		<div class="card">
+			<ion-list>
+				<ion-item class="item item-icon-right" ng-click="reports.stateGo('income-statement')">
+					<i class="icon ion-chevron-right"></i>
+					{{"reports_income_statement" | translate}}
+				</ion-item>
+				<ion-item class="item item-icon-right" ng-click="reports.stateGo('activitylog')">
+					<i class="icon ion-chevron-right"></i>
+					{{"reports_activity_log" | translate}}
+				</ion-item>
+				<ion-item class="item item-icon-right" ng-click="reports.stateGo('saleslog')">
+					<i class="icon ion-chevron-right"></i>
+					{{"reports_sales_reports" | translate}}
+				</ion-item>
+				<ion-item class="item item-icon-right" ng-click="reports.stateGo('expenselog')">
+					<i class="icon ion-chevron-right"></i>
+					{{"reports_expense_log" | translate}}
+				</ion-item>
+			</ion-list>
+		</div>
+	</ion-content>
+</ion-view>

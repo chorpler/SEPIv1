@@ -1,0 +1,64 @@
+<ion-modal-view>
+	<ion-header-bar>
+		<h1 class="title">{{"edit_title" | translate}} {{"reports_sale" | translate}}</h1>
+		<div class="buttons">
+			<button class="button button-clear button-positive" ng-click="saleslog.showConfirm()">
+				<i class="icon ion-trash-b"></i>
+			</button>
+		</div>
+	</ion-header-bar>
+
+	<ion-content>
+		<form name="salesForm" novalidate>
+			<div class="list sales-edit">
+				<div class="item item-divider">{{"reports_date" | translate}} : {{saleslog.currentSale.date.format('MMM D, YYYY')}}</div>
+				<label class="item item-input inline-container">
+					<div class="input-container">
+						<span class="input-label">{{"sales_total_sale" | translate}}</span>
+						<input 	type="number"
+								name="amount"
+								smart-float
+								ng-pattern="numberPattern"
+								required="required"
+								ng-model="saleslog.currentSale.amount" />
+					</div>
+					<div ng-show="(salesForm.name.$touched || salesForm.$submitted) && !saleslog.submitted">
+						<span ng-show="salesForm.amount.$error.pattern" class="form-error">
+							{{"invalid_number_error" | translate}}
+						</span>
+						<span ng-show="salesForm.amount.$error.required" class="form-error">
+							{{"required_error" | translate}}
+						</span>
+					</div>
+				</label>
+				<div ng-repeat="product in saleslog.currentSale.products track by product.id">
+					<div class="item item-divider">{{product.name}} - {{"reports_price" | translate}}: {{product.saleprice | currency}}</div>
+					<label class="item item-input inline-container">
+						<div class="input-container">
+							<span class="input-label">{{"reports_qty" | translate}}</span>
+							<input 	type="number"
+									name="quantity"
+									smart-float
+									ng-pattern="numberPattern"
+									required="required"
+									ng-model="product.quantity"/>
+						</div>
+						<div ng-show="(salesForm.name.$touched || salesForm.$submitted) && !saleslog.submitted">
+							<span ng-show="salesForm.quantity.$error.pattern" class="form-error">
+								{{"invalid_number_error" | translate}}
+							</span>
+							<span ng-show="salesForm.quantity.$error.required" class="form-error">
+								{{"required_error" | translate}}
+							</span>
+						</div>
+					</label>
+				</div>
+				<input type="submit" class="button button-block button-balanced" ng-click="saleslog.save(saleslog.currentSale, salesForm, $event)" value="{{'save_button' | translate}}">
+				<button class="button button-block button-assertive"
+						ng-click="saleslog.cancel(saleslog.currentSale)">
+					{{"cancel_button" | translate}}
+				</button>
+			</div>
+		</form>
+	</ion-content>
+</ion-modal-view>

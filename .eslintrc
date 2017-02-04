@@ -1,0 +1,15 @@
+{
+	"extends": "standard",
+	"plugins": ["standard"],
+	"globals": {
+		"angular": false,
+		"cordova": false,
+    "moment": false
+	},
+	"rules": {
+		"semi": [2, "always"],
+		"indent": [2, "tab", {"SwitchCase": 1}],
+		"no-multi-spaces": [0, { "exceptions": { "VariableDeclarator": true } }],
+		"brace-style": [2, "stroustrup"]
+	}
+}

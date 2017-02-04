@@ -1,0 +1,54 @@
+<ion-modal-view class="sales-report">
+	<ion-header-bar>
+		<h1 class="title">{{"reports_sales_reports" | translate}}</h1>
+		<div class="buttons">
+			<button class="button button-clear" ng-click="reports.closeSalesReport()">
+				<span class="back-color">{{"close_button" | translate}}</span>
+			</button>
+		</div>
+	</ion-header-bar>
+
+	<report-header start-date="reports.startDate" end-date="reports.endDate" time-frame="reports.timeFrame" change="reports.change" language="reports.language" class="has-header"></report-header>
+	<ion-content>
+		<ion-list ng-repeat="sale in reports.sales track by sale.id | orderBy: sale.date">
+			<div class="item item-divider">
+				<div class="row">
+					<div class="col">
+						<span class="name-container">{{"reports_date" | translate}}: {{sale.date.format('MMM D, YYYY')}}</span>
+					</div>
+					<div class="col">
+						<span class="amount-container">Total: {{sale.amount | currency}}</span>
+					</div>
+				</div>
+			</div>
+			<ion-item ng-repeat="product in sale.products track by product.id">
+				<div class="row">
+					<div class="col col-33">
+						<span>{{product.name}}</span>
+					</div>
+					<div class="col col-48">
+						<span>{{"reports_price" | translate}}: {{product.price | currency}}</span>
+					</div>
+					<div class="col">
+						<span>{{"reports_qty" | translate}}: {{product.quantity}}</span>
+					</div>
+				</div>
+			</ion-item>
+		</ion-list>
+		<div class="item item-divider">
+			<div class="row">
+				<div class="col">
+					<b>{{"reports_grand_total" | translate}}: </b>
+				</div>
+				<div class="col">
+					<b>{{reports.salesTotal | currency}}</b>
+				</div>
+			</div>
+		</div>
+		<div class="card" ng-if="reports.sales.length === 0">
+			<div class="item item-text-wrap center">
+				<span class="no-reports">{{"reports_no_sales" | translate}}</span>
+			</div>
+		</div>
+	</ion-content>
+</ion-modal-view>

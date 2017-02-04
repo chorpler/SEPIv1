@@ -1,0 +1,23 @@
+BUGS
+* (2016-12-27 fixed) Fix settings user won't open
+* (2016-12-27 fixed) Expenses won't take input after add
+* (2016-12-27 fixed) Change input types to numbers where appropriate
+* (2016-12-28 fixed) Income Statement not creating PDF report when user info not entered
+* (2016-12-28 fixed) Import spreadsheet not working
+* Popup Menus are not wide enough for Spanish text
+* Hard-coded English/Spanish translations (Salary/controllers.js, etc.)
+
+NEW FEATURES
+* Add button to make sale with/without tax
+* Add supplier to product/inventory
+* Optional receipt for sale (text/email/?)
+* Optional server synchronization
+* Optional sync DB to customer's Dropbox / Google Drive / Google Docs / whatever
+* Personal finance from salary (see sketches)
+* Goals (see sketches)
+
+Lamoni iPhone:
+Lamonito
+10.0.2 (14A456)
+UDID: 31884e4c8ba755eabc26fe36f8b4a1f0cf50dffa
+ECID: 190CA438F3E026

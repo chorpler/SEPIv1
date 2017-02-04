@@ -1,0 +1,13 @@
+<ion-modal-view class="pdf-viewer">
+	<ion-header-bar>
+		<h1 class="title" ng-show="vm.pdfViewerNumber == 1">{{"reports_income_statement" | translate}}</h1>
+		<h1 class="title" ng-show="vm.pdfViewerNumber == 2">{{"reports_activity_log" | translate}}</h1>
+		<h1 class="title" ng-show="vm.pdfViewerNumber == 3">{{"reports_sales_reports" | translate}}</h1>
+		<h1 class="title" ng-show="vm.pdfViewerNumber == 4">{{"reports_expense_log" | translate}}</h1>
+		<button class="button button-icon icon ion-more menu-button-pdf-viewer" ng-click="vm.openPDFPopover($event)"></button>
+	</ion-header-bar>
+	<ion-content>
+		<h1 class="alert" ng-show="!(pdfLoaded == true)">{{loadingVar}}</h1>
+		<ng-pdf ng-if="pdfUrl" template-url="templates/viewer.html" canvasid="pdf" scale="page-fit"></ng-pdf>
+	</ion-content>
+</ion-modal-view>
