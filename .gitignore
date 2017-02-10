@@ -21,3 +21,5 @@ res/mipmap-mdpi/icon.png
 hooks/after_prepare/010_add_platform_class.js
 
 package.json
+*.DS_Store
+android-debug.apk
